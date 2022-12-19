@@ -14,6 +14,16 @@ classifiers = [
   'Programming Language :: Python :: 3',
 ]
 dependencies = [
+  'numpy',
+  'scipy',
+  'pandas',
+  'uncertainties',
+  'docopt',
+  'nestedtext',
+  'pydantic',
+  'byoc',
+  'tabulate',
+  'tidyexc',
 ]
 
 [project.optional-dependencies]
@@ -27,7 +37,8 @@ doc = [
   'autoclasstoc',
 ]
 [project.scripts]
-cfu_count = "cfu_count:main"
+cfu-count = "cfu_count.main:main"
+
 [project.urls]
 'Documentation' = 'https://cfu_count.readthedocs.io/en/latest/'
 'Version Control' = 'https://github.com/kalekundert/cfu_count'
@@ -38,6 +49,9 @@ cfu_count = "cfu_count:main"
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-glob='*.rst'"
 doctest_optionflags = 'NORMALIZE_WHITESPACE'
+filterwarnings = [
+  "ignore::DeprecationWarning:numpy.distutils.ccompiler"
+]
 
 [tool.coverage.run]
 branch = true
