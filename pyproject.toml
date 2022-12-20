@@ -30,8 +30,9 @@ dependencies = [
 [project.optional-dependencies]
 test = [
   'pytest',
-  're-assert',
+  'pytest-tmp-files',
   'parametrize_from_file',
+  're-assert',
   'tqdm',
 ]
 doc = [
