@@ -30,7 +30,9 @@ dependencies = [
 [project.optional-dependencies]
 test = [
   'pytest',
+  're-assert',
   'parametrize_from_file',
+  'tqdm',
 ]
 doc = [
   'sphinx',
