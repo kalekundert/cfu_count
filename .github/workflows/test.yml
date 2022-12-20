@@ -24,10 +24,12 @@ jobs:
       - name: Install test dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -e .[test] coverage[toml]
+          python -m pip install -e .[test] coverage[toml] pytest-cov
 
       - name: Run test suite
         run: |
+          # Use `pytest-cov` instead of `coverage run` because the former 
+          # automatically handles subprocess invocations.
           pytest --cov cfu_counts --cov-branch
           coverage run --concurrency=multiprocessing tests/fake_data.py
 
