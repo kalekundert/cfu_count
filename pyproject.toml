@@ -62,6 +62,12 @@ branch = true
 parallel = true
 source = ['cfu_count']
 
+[tool.coverage.paths]
+source = [
+    'cfu_count',
+    '/home/runner/work/cfu_count/cfu_count',
+]
+
 [tool.coverage.report]
 exclude_lines = [
     "^\\s*raise AssertionError\\b",
