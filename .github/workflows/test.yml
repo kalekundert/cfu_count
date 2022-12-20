@@ -33,7 +33,7 @@ jobs:
           # Use `pytest-cov` instead of `coverage run` because the former 
           # automatically handles subprocess invocations.
           pytest --cov cfu_counts --cov-branch
-          coverage run --concurrency=multiprocessing tests/fake_data.py
+          coverage run --parallel-mode --concurrency=multiprocessing tests/fake_data.py
 
       - name: Store coverage data
         uses: actions/upload-artifact@v3
