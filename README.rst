@@ -14,13 +14,13 @@ CFU Count
    :alt: Documentation
    :target: https://cfu_count.readthedocs.io/en/latest/?badge=latest
 
-.. image:: https://img.shields.io/github/workflow/status/kalekundert/cfu_count/Test%20and%20release/master
+.. image:: https://img.shields.io/github/actions/workflow/status/kalekundert/cfu_count/test.yml?branch=master
    :alt: Test status
    :target: https://github.com/kalekundert/cfu_count/actions
 
-.. image:: https://img.shields.io/coveralls/kalekundert/cfu_count.svg
+.. image:: https://img.shields.io/codecov/c/gh/kalekundert/cfu_count.svg
    :alt: Test coverage
-   :target: https://coveralls.io/github/kalekundert/cfu_count?branch=master
+   :target: https://app.codecov.io/gh/kalekundert/cfu_count
 
 .. image:: https://img.shields.io/github/last-commit/kalekundert/cfu_count?logo=github
    :alt: Last commit
