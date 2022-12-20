@@ -17,6 +17,7 @@ dependencies = [
   'numpy',
   'scipy',
   'pandas',
+  'matplotlib',
   'uncertainties',
   'docopt',
   'nestedtext',
