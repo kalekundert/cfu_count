@@ -455,7 +455,3 @@ def pick_output_path(input_path, output_template, use_default, default_template)
     output_path = output_template.replace('%', base_name)
     return Path(output_path)
 
-def get_auto_xlim(culture):
-    d = culture.density_cfu_mL
-    return d.nominal_value + 5 * d.std_dev
-
