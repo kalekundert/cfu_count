@@ -2,7 +2,9 @@ name: Test
 
 on:
   push:
+    branches: ['master']
   pull_request:
+    branches: ['master']
   schedule:
     - cron: '0 17 1,15 * *'
 
@@ -13,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.7, 3.8, 3.9, '3.10', 3.11]
+        python-version: ['3.10', 3.11]
 
     steps:
       - uses: actions/checkout@v3
@@ -23,19 +25,21 @@ jobs:
 
       - name: Install test dependencies
         run: |
-          python -m pip install --upgrade pip
-          python -m pip install -e .[test] coverage[toml]
+          pip install --upgrade pip
+          pip install -e .[test] coverage[toml] pytest-cov
 
       - name: Run test suite
         run: |
-          pytest --cov cfu_counts --cov-branch
-          coverage run --concurrency=multiprocessing tests/fake_data.py
+          # Use `pytest-cov` instead of `coverage run` because the former 
+          # automatically handles subprocess invocations.
+          pytest --cov cfu_count --cov-branch
+          coverage run --parallel-mode --concurrency=multiprocessing tests/fake_data.py
 
       - name: Store coverage data
         uses: actions/upload-artifact@v3
         with:
           name: coverage-data
-          path: .coverage.*
+          path: .coverage*
 
       - name: Store fake data recovery
         uses: actions/upload-artifact@v3
@@ -54,17 +58,17 @@ jobs:
         with:
           python-version: '3.10'
       - run: |
-          python -m pip install --upgrade pip
-          python -m pip install coverage[toml]
+          pip install --upgrade pip
+          pip install coverage[toml]
       - uses: actions/download-artifact@v3
         with:
           name: coverage-data
       
       - name: Combine coverage data
         run: |
-          python -m coverage combine
-          python -m coverage xml
-          python -m coverage report | sed 's/^/    /' >> $GITHUB_STEP_SUMMARY
+          coverage combine --append
+          coverage xml
+          coverage report | sed 's/^/    /' >> $GITHUB_STEP_SUMMARY
 
       - name: Upload Codecov report
         uses: codecov/codecov-action@v3
